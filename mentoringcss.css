@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0.2em 0.2em 1em 0.001em black;
+}
+
+.page_title{
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #464547;
+    font-family: 'Oswald', sans-serif;
+}
+
+.button {
+    padding-top: 0.7em;
+}
+
+#main_container {
+    background-color: white;
+    box-shadow: 0.2em 0.2em 1em 0.001em black;
+}
+
+.dropdown-item {
+    display: block;
+    justify-content: center;
+    height: 10px;
+    margin-top: 0.5em;
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+.dropdown-menu {
+    height: 6.5rem;
+    width: 16rem;
+    display: block;
+  }
+
+.home_icon {
+    color: #464547;
+    font-size: 2em;
+    padding-top: 0.5em;
+}
+
+.login {
+    padding-top: 5em;
+    padding-left: 3em;
+}
+
+.login p {
+    font-size: 1.7em;
+    font-weight: 400;
+    font-family: 'Grenze', serif;
+    color: #39c2d7;
+}
+
+.login_btn {
+    margin-top: 2em;
+}
+
+.registration {
+    padding-top: 5em;
+    padding-left: 3em;
+}
+
+.registration p {
+    font-size: 1.7em;
+    font-weight: 400;
+    font-family: 'Grenze', serif;
+    color: #39c2d7;
+}
+
+.reg2_btn {
+    margin-top: 2em;
+}
+
+.form-control-file {
+    margin-top: 2em;
+}
