@@ -26,17 +26,17 @@
     </nav>
     <main id="main_container" class="container">
         <div class= "login row">
-            <form>
+            <form name="login_form" onsubmit="return checkUser()" method="post">
                 <p>Felhasználó név</p><br>
-                <input type = "text" name="Felhasználó név" class="login_name col-md-4" placeholder="Adja meg felhasználó nevét / e-mail címét">
+                <input type = "text" name="loginName" class="login_name col-md-4" placeholder="Adja meg felhasználó nevét / e-mail címét">
                 <br>
                 <br>
                 <p>Jelszó</p><br>
-                <input type = "text" name="Jelszó" class="login_password col-md-4" placeholder="Adja meg jelszavát">
+                <input type = "text" name="loginPassword" class="login_password col-md-4" placeholder="Adja meg jelszavát">
                 <br>
+                <br>
+                <button type="submit" class="btn btn-primary login_btn col-md-4">Belépés</button>
             </form>
-            <br>
-            <button type="button" class="btn btn-primary login_btn col-md-4">Belépés</button>
             <br>
             <br>
             <br>
