@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@base-box-shadow: 0.2em 0.2em 1em 0.001em black;
+@epam-blue: #39c2d7;
+@epam-grey: #464547;
+
+.login_form_scheme {
+    font-size: 1.7em;
+    font-weight: 400;
+    font-family: 'Grenze', serif;
+    color: @epam-blue;
+    padding-top: 1em;
+}
+.oswald_font_scheme {
+    color: @epam-grey;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: @base-box-shadow;
+    margin-top: 1em;
+}
+
+.page_title {
+    font-size: 2.5em;
+    font-weight: 600;
+    color:@epam-grey;
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+}
+
+.button {
+    padding-top: 0.7em;
+}
+
+#main_container {
+    background-color: white;
+    box-shadow: @base-box-shadow;
+}
+
+.dropdown-item {
+    display: block;
+    justify-content: center;
+    height: 10px;
+    margin-top: 0.5em;
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+.dropdown-menu {
+    height: 6.5rem;
+    width: 16rem;
+    display: block;
+}
+
+.home_icon {
+    color: @epam-grey;
+    font-size: 2em;
+    padding-top: 0.5em;
+}
+
+.home_icon:hover {
+    opacity: 0.5;
+    color: @epam-blue;
+}
+
+.login {
+    padding-left: 3em;
+    padding-bottom: 2em;
+}
+
+.login_btn {
+    margin-top: 2em;
+}
+
+.registration {
+    padding-left: 3em;
+    padding-bottom: 2em;
+}
+
+.login_form label {
+    .login_form_scheme();
+}
+
+.reg_form label {
+    .login_form_scheme();
+}
+
+.reg2_btn {
+    margin-top: 2em;
+}
+
+.login_form {
+    display: inline-block;
+}
+
+.reg_form {
+    .login_form();
+}
+
+.account_navbar h1 {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: @epam-grey;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
+
+.acc {
+    font-family: 'Grenze', serif;
+    color: @epam-blue;
+    font-size: 1.7em;
+    font-weight: 400;
+    padding-top: 1em;
+}
+
+.accpic {
+    padding-bottom: 2em;
+}
+
+.footer {
+    background-color: white;
+    box-shadow: @base-box-shadow;
+    margin-top: 1.5em;
+    border-radius: 4px;
+}
+
+.copyright {
+    .oswald_font_scheme();
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.epam_logo:hover {
+    opacity: 0.5;
+}
+
+.reg_span {
+    display: none;
+    .oswald_font_scheme();
+}

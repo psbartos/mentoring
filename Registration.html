@@ -4,7 +4,7 @@
 <head>
     <title>Mentoring index page</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="mentoringcss.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -34,24 +34,27 @@
             <form name="reg_form" class="reg_form" onsubmit="return checkUserRegistration()">
                 <div class=row>
                     <label for="reg_email">E-mail cím</label>
-                    <input type="email" name="reg_email" onfocusout="regEmailCheck()" class="reg_email form-control input-lg col-md-4"
-                        placeholder="Adja meg e-mail címét" />
+                    <input type="email" name="reg_email" onfocusout="regEmailCheck()"
+                        class="reg_email form-control input-lg col-md-4" placeholder="Adja meg e-mail címét" />
                 </div>
                 <div class=row>
-                    <label for="reg_name">Felhasználó név</label>
-                    <input type="text" name="reg_name" onfocusout="regNameCheck()" class="reg_name form-control input-lg col-md-4"
-                        placeholder="Adja meg felhasználó nevét" />
+                    <label class="reg_name_label" for="reg_name">Felhasználó név</label>
+                    <input type="text" name="reg_name" onfocusout="regNameCheck()"
+                        class="reg_name form-control input-lg col-md-4" placeholder="Adja meg felhasználó nevét" />
                 </div>
+                <span class="reg_name_span reg_span">Felhasználó neve tartalmazzon legalább 8 karakter!</span>
                 <div class=row>
-                    <label for="reg_password">Jelszó</label><span></span>
-                    <input type="password" name="reg_password" onfocusout="regPassCheck()" class="reg_password form-control input-lg col-md-4"
-                        placeholder="Adja meg jelszavát" />
+                    <label class="reg_pass_label" for="reg_password">Jelszó</label>
+                    <input type="password" name="reg_password" onfocusout="regPassCheck()"
+                        class="reg_password form-control input-lg col-md-4" placeholder="Adja meg jelszavát" />
                 </div>
+                <span class="reg_pass_span reg_span">Jelszava tartalmazzon legalább egy nagybetűt és egy számot!</span>
                 <div class=row>
-                    <label for="reg_password2">Erősítse meg jelszavát</label>
+                    <label class="reg_pass2_label" for="reg_password2">Erősítse meg jelszavát</label>
                     <input type="password" name="reg_password2" class="reg_password2 form-control input-lg col-md-4"
                         placeholder="Adja meg újra jelszavát" />
                 </div>
+                <span class="reg_pass2_span reg_span">Írja be újra jelszavát!</span>
                 <div class=row>
                     <label for="form-control-file">Töltse fel fényképét (Nem kötelező!)</label>
                     <input type="file" class="form-control-file" id="exampleFormControlFile1" />
@@ -78,6 +81,7 @@
         </div>
 
     </footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>

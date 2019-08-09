@@ -21,6 +21,27 @@ function checkUserLogin() {
     return false;
 };
 
+/*function checkUserLogin() {
+    const loginName = document.forms["login_form"]["loginName"].value;
+    const loginPassword = document.forms["login_form"]["loginPassword"].value;
+
+    switch (loginName) {
+        case loginName === "":
+            alert('Kérem írja be Felhasználó nevét!');
+            break;
+        case loginName !== "admin":
+            alert('Kérem adja meg jelszavát!');
+            break;
+        case (loginName === "admin"):
+            alert('Sikeres bejelentkezés!')
+            window.location.replace("accountpage.html");
+            break
+        default:
+            alert('Hibás felhasználónév, vagy jelszó!')
+    }
+}; */
+
+
 function checkUserRegistration() {
     const regEmail = document.forms["reg_form"]["reg_email"].value;
     const regName = document.forms["reg_form"]["reg_name"].value;
@@ -87,3 +108,33 @@ function regNameCheck() {
     } else alert('Valami nem jó!')
     return false;
 };
+
+$(document).ready(function () {
+    $('.reg_name_label').mouseenter(function () {
+        $('.reg_name_span').show();
+    });
+    $('.reg_name_label').mouseleave(function () {
+        $('.reg_name_span').hide();
+    });
+    $('.reg_pass_label').mouseenter(function () {
+        $('.reg_pass_span').show();
+    });
+    $('.reg_pass_label').mouseleave(function () {
+        $('.reg_pass_span').hide();
+    });
+    $('.reg_pass2_label').mouseenter(function () {
+        $('.reg_pass2_span').toggle();
+    });
+})
+
+
+/* $('.home_icon').mouseenter(function () {
+    $('.page_title').css({
+        'padding-left': '0.5em',
+    });
+});
+ $('.home_icon').mouseleave(function () {
+        $('.page_title').css({
+            'padding-left': '0em'
+        });
+}); */
