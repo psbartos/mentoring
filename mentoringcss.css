@@ -9,7 +9,7 @@
     box-shadow: 0.2em 0.2em 1em 0.001em black;
 }
 
-.page_title{
+.page_title {
     font-size: 2.5em;
     font-weight: 600;
     color: #464547;
@@ -38,7 +38,7 @@
     height: 6.5rem;
     width: 16rem;
     display: block;
-  }
+}
 
 .home_icon {
     color: #464547;
@@ -47,15 +47,8 @@
 }
 
 .login {
-    padding-top: 5em;
     padding-left: 3em;
-}
-
-.login p {
-    font-size: 1.7em;
-    font-weight: 400;
-    font-family: 'Grenze', serif;
-    color: #39c2d7;
+    padding-bottom: 2em;
 }
 
 .login_btn {
@@ -63,21 +56,68 @@
 }
 
 .registration {
-    padding-top: 5em;
     padding-left: 3em;
+    padding-bottom: 2em;
 }
 
-.registration p {
+.login_form label {
     font-size: 1.7em;
     font-weight: 400;
     font-family: 'Grenze', serif;
     color: #39c2d7;
+    display: inline-block;
+    padding-top: 1em;
 }
 
 .reg2_btn {
     margin-top: 2em;
 }
 
-.form-control-file {
-    margin-top: 2em;
+.login_form {
+    display: inline-block;
+}
+
+.reg_form label {
+    font-size: 1.7em;
+    font-weight: 400;
+    font-family: 'Grenze', serif;
+    color: #39c2d7;
+    padding-top: 1em;
+}
+
+.reg_form {
+    display: inline-block;
+}
+
+.account_navbar h1 {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #464547;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
+
+.acc {
+    font-family: 'Grenze', serif;
+    color: #39c2d7;
+    font-size: 1.7em;
+    font-weight: 400;
+    padding-top: 1em;
+}
+
+.accpic {
+    padding-bottom: 2em;
+}
+
+.footer {
+    background-color: white;
+    box-shadow: 0.2em 0.2em 1em 0.001em black;
+    margin-top: 1.5em;
+    border-radius: 4px;
+}
+
+.copyright {
+    color: #464547;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
 }

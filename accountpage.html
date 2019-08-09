@@ -16,7 +16,7 @@
     <nav id="nav_container" class="container">
         <div class="navbar row">
             <a href="mentoringindex.html"><i class="home_icon fas fa-home col-md-1"></i></a>
-            <div class="col-md-8 page_title">BEJELENTKEZÉS</div>
+            <div class="col-md-8 page_title">FIÓK ADATOK</div>
             <div class="button dropdown col-md-3">
                 <button type="button" id="dropdownMenuButton" class="btn btn-primary dropdown-toggle reg_btn"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,39 +30,27 @@
         </div>
     </nav>
     <main id="main_container" class="container">
-        <div class="login">
-            <form name="login_form" class="login_form" onsubmit="return checkUserLogin()">
-                <div class="row">
-                    <label for="loginName">Felhasználó név</label>
-                    <input type="text" name="loginName" class="login_name form-control input-lg col-md-4"
-                        placeholder="Adja meg felhasználó nevét / e-mail címét" /></div>
-                <div class="row">
-                    <label for="loginPassword">Jelszó</label>
-                    <input type="password" name="loginPassword" class="login_password form-control input-lg col-md-4"
-                        placeholder="Adja meg jelszavát" />
-                </div>
-                <div class="row">
-                    <button type="submit" class="btn btn-primary login_btn col-md-4">
-                        Belépés
-                    </button>
-            </form>
+        <div class="account_navbar row">
+            <h1 class="col-md-12">Saját adatok</h1>
         </div>
-        </form>
-
-        <!--Később kerül be-->
-
-        <!--<div class="row">
-            <a class="col-md-4" href="#"><span>Elfelejtett Jelszó</span></a>
+        <hr>
+        <div class="account_info1 row">
+            <div class="acc accname col-md-4">Felhasználónév: </div>
         </div>
-        <div class="row">
-            <a class="col-md-4" href="#"><span>Elfelejtett Felhasználónév</span></a>
-        </div>-->
-
+        <div class="account_info2 row">
+            <div class="acc accemail col-md-4">E-mail cím: </div>
+        </div>
+        <div class="account_info3 row">
+            <div class="acc accpass col-md-4">Jelszó: </div>
+        </div>
+        <div class="account_info4 row">
+            <div class="acc accpic col-md-4">Fénykép: </div>
+        </div>
     </main>
     <footer class="footer container">
         <div class="row">
             <div class="copyright col-md-4">
-                Made by: Peter_Bartos 2019 &copy
+                Made by: Peter_Bartos&copy 2019
             </div>
         </div>
 
