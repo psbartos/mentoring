@@ -11,14 +11,28 @@
 .login_form_scheme {
     font-size: 1.7em;
     font-weight: 400;
-    font-family: 'Grenze', serif;
-    color: @epam-blue;
     padding-top: 1em;
+    .grenze_blue()
 }
+
 .oswald_font_scheme {
+    .oswald_grey();
+    font-size: 1em;
+}
+
+.hover_scheme {
+    opacity: 0.5;
+    color: @epam-blue;
+}
+
+.oswald_grey {
     color: @epam-grey;
     font-family: 'Oswald', sans-serif;
-    font-size: 1em;
+}
+
+.grenze_blue {
+    font-family: 'Grenze', serif;
+    color: @epam-blue;
 }
 
 .navbar {
@@ -27,19 +41,27 @@
     margin-top: 1em;
 }
 
-.page_title {
-    font-size: 2.5em;
-    font-weight: 600;
-    color:@epam-grey;
-    font-family: 'Oswald', sans-serif;
-    position: relative;
+.navbar__page-title {
+    @media screen and (min-width: 680px) {
+        font-size: 2.5em;
+        font-weight: 600;
+        position: relative;
+        .oswald_grey();
+    }
+
+    @media screen and (max-width: 680px) {
+        font-size: 1.5em;
+        font-weight: 600;
+        position: relative;
+        .oswald_grey();
+    }
 }
 
-.button {
+.navbar__dropdown-button {
     padding-top: 0.7em;
 }
 
-#main_container {
+.main-content {
     background-color: white;
     box-shadow: @base-box-shadow;
 }
@@ -55,19 +77,36 @@
 
 .dropdown-menu {
     height: 6.5rem;
-    width: 16rem;
-    display: block;
+    width: 20rem;
+    display: inline-block;
 }
 
-.home_icon {
+.navbar__home-icon {
     color: @epam-grey;
     font-size: 2em;
     padding-top: 0.5em;
+
+    &:hover {
+        .hover_scheme()
+    }
 }
 
-.home_icon:hover {
-    opacity: 0.5;
-    color: @epam-blue;
+.navbar__mobile-icon {
+    @media screen and (min-width: 680px) {
+        font-size: 2em;
+        padding-top: 0.5em;
+        visibility: hidden;
+    }
+
+    @media screen and (max-width: 680px) {
+        font-size: 2em;
+        padding-top: 0.5em;
+        visibility: visible;
+    }
+
+    &:hover {
+        .hover_scheme()
+    }
 }
 
 .login {
@@ -79,42 +118,40 @@
     margin-top: 2em;
 }
 
-.registration {
+.registration-container {
     padding-left: 3em;
     padding-bottom: 2em;
 }
 
-.login_form label {
+.login-form label {
     .login_form_scheme();
 }
 
-.reg_form label {
+.reg-form label {
     .login_form_scheme();
 }
 
-.reg2_btn {
+.reg-form__reg2_btn {
     margin-top: 2em;
 }
 
-.login_form {
+.login-form {
     display: inline-block;
 }
 
-.reg_form {
-    .login_form();
+.reg-form {
+    .login-form();
 }
 
 .account_navbar h1 {
     font-size: 2.5em;
     font-weight: 600;
-    color: @epam-grey;
-    font-family: 'Oswald', sans-serif;
     text-align: center;
+    .oswald_grey();
 }
 
 .acc {
-    font-family: 'Grenze', serif;
-    color: @epam-blue;
+    .grenze_blue();
     font-size: 1.7em;
     font-weight: 400;
     padding-top: 1em;
@@ -131,17 +168,13 @@
     border-radius: 4px;
 }
 
-.copyright {
+.footer__copyright {
     .oswald_font_scheme();
     padding-top: 0.5em;
     padding-bottom: 0.5em;
 }
 
-.epam_logo:hover {
-    opacity: 0.5;
-}
-
-.reg_span {
+.reg-form__reg-span {
     display: none;
     .oswald_font_scheme();
 }
