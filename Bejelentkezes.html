@@ -30,22 +30,27 @@
             </div>
         </div>
     </nav>
-    <main id="main_container" class="container">
+    <main id="main_container" class="main-content container">
         <div class="login">
             <form name="login_form" class="login-form" onsubmit="return checkUserLogin()">
                 <div class="row">
                     <label for="loginName">Felhasználó név</label>
                     <input type="text" name="loginName" class="login-form__login-name form-control input-lg col-md-4"
-                        placeholder="Adja meg felhasználó nevét / e-mail címét" /></div>
+                        placeholder="Adja meg felhasználó nevét" /></div>
+                        <span class="login-form__login-name-span login-form__login-span alert-danger">Kérem adja meg Felhasználónevét!</span><br>
+                            <span class="login-form__login-name-span2 login-form__login-span alert-danger">Nincs ilyen felhasználónév!</span>
                 <div class="row">
                     <label for="loginPassword">Jelszó</label>
                     <input type="password" name="loginPassword" class="login-form__login-password form-control input-lg col-md-4"
                         placeholder="Adja meg jelszavát" />
                 </div>
+                <span class="login-form__login-pass-span login-form__login-span alert-danger">Kérem adja meg Jelszavát!</span><br>
+                            <span class="login-form__login-pass-span2 login-form__login-span alert-danger">Jelszava nem megfelelő!</span>
                 <div class="row">
                     <button type="submit" class="btn btn-primary login_btn col-md-4">
                         Belépés
                     </button>
+                    <span class="login-form__login-success-span login-form__login-span alert-success">Sikeres bejelentkezés!</span>
             </form>
         </div>
         </form>
