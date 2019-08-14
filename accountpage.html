@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Grenze&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Oswald:500&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -31,23 +32,39 @@
         </div>
     </nav>
     <main id="main-container" class="main-content container">
-        <div class="account_navbar row">
-            <h1 class="col-md-12">Saját adatok</h1>
+        <div class="account-page">
+            <div class="account_navbar row">
+                <h1 class="col-md-12">Saját adatok</h1>
+            </div>
+            <hr>
+            <div class="account-page__links row">
+                <div class="account-page__link1 col-md-3"><a href="#">Adatok módosítása</a></div>
+                <div class="account-page__link2 col-md-3"><a href="#">Barátok / Ismerősök</a></div>
+                <div class="account-page__link3 col-md-3"><a href="#">Tiltólista</a></div>
+                <div class="account-page__link4 col-md-3"><a href="#">Fórum</a></div>
+            </div>
+            <hr>
+            <div class="account-page__personal-data row">
+                <div class="account-page__info-block col-md-6">
+                    <div class="acc accname">Felhasználónév: </div>
+
+                    <div class="acc accemail">E-mail cím: </div>
+
+                    <div class="acc accpass">Jelszó: </div>
+
+                    <div class="acc accpic">Fénykép: </div>
+                </div>
+                <div class="account-page__picture col-md-6"></div>
+            </div>
         </div>
-        <hr>
-        <div class="account_info1 row">
-            <div class="acc accname col-md-4">Felhasználónév: </div>
         </div>
-        <div class="account_info2 row">
-            <div class="acc accemail col-md-4">E-mail cím: </div>
-        </div>
-        <div class="account_info3 row">
-            <div class="acc accpass col-md-4">Jelszó: </div>
-        </div>
-        <div class="account_info4 row">
-            <div class="acc accpic col-md-4">Fénykép: </div>
         </div>
     </main>
+    <div class="counter-container container">
+        <div class="index-page__user-counter row">
+            <h1 class=" counter-h1 col-md-12"></h1>
+        </div>
+    </div>
     <footer class="footer container">
         <div class="row">
             <div class="footer__copyright col-md-4">

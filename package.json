@@ -1,0 +1,20 @@
+{
+  "name": "mentoring",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mentoringjs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mock:server": "json-server --watch db.json --port 3001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.epam.com/Peter_Bartos/Mentoring.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "json-server": "^0.15.0"
+  }
+}
