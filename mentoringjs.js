@@ -1,129 +1,134 @@
- function checkUserLogin() {
-     const loginName = document.forms["login_form"]["loginName"].value;
-     const loginPassword = document.forms["login_form"]["loginPassword"].value;
-
-     if (loginName === "" && loginPassword === "") {
-         alert('Kérem írja be Felhasználó nevét és jelszavát!')
-         return false;
-     } else if (loginName !== "admin" && loginPassword === "") {
-         alert('Kérem adja meg jelszavát!')
-         return false;
-     } else if (loginName !== "admin" && loginPassword !== "Béla") {
-         alert('Hibás felhasználónév, vagy jelszó!')
-         return false;
-     } else if (loginName === "" && loginPassword !== "Béla") {
-         alert('Kérem adja meg felhasználó nevét')
-         return false;
-     } else if (loginName === "admin" && loginPassword === "Béla") {
-         alert('Sikeres bejelentkezés!')
-         window.location.replace("accountpage.html")
-     } else alert('Hibás felhasználónév, vagy jelszó!')
-     return false;
- };
-
- /* function checkUserLogin() {
+function checkUserLogin() {
     const loginName = document.forms["login_form"]["loginName"].value;
     const loginPassword = document.forms["login_form"]["loginPassword"].value;
 
-    switch (loginName | loginPassword) {
-        case loginName === "" | loginPassword === "":
-            alert('Kérem írja be Felhasználó nevét és a jelszavát!');
-            break;
-        case  loginName !== "admin" | loginPassword === "":
-            alert('Kérem adja meg jelszavát!');
-            break;
-        case loginName === "admin" | loginPassword === "Béla":
-            alert('Sikeres bejelentkezés!')
-            window.location.replace("accountpage.html");
-            break
-        default:
-            alert('Hibás felhasználónév, vagy jelszó!')
+    async function getUserNames () {
+        const users = await getUsers()
+        const filteredUsers = users.filter(element => element.name === loginName && element.password === loginPassword);
+        console.log(filteredUsers.length > 0);
+        return filteredUsers.length > 0;
     }
-}; */
 
+    getUserNames().then(async function(){
+    if (loginName === "") {
+        $('.login-form__login-name-span').toggle();
+        return false;
+    } else if (loginPassword === "") {
+        $('.login-form__login-name-span').toggle();
+        $('.login-form__login-pass-span').toggle();
+        return false;
+    } else if (!(await getUserNames)) {
+        $('.login-form__login-pass-span').toggle();
+        $('.login-form__login-name-span2').toggle();
+        return false;
+    } else if (await getUserNames) {
+        $('.login-form__login-success-span').toggle();
+        location.href = "http://127.0.0.1:5500/accountpage.html";
+        return true;
+     } else console.log('Hiba történt a bejelentkezésnél!');
+    })
+};
 
- function checkUserRegistration() {
-     const regEmail = document.forms["reg_form"]["reg_email"].value;
-     const regName = document.forms["reg_form"]["reg_name"].value;
-     const regPassword = document.forms["reg_form"]["reg_password"].value;
-     const regPassword2 = document.forms["reg_form"]["reg_password2"].value;
+const getUsers = async () => {
+    try {
+        return (await axios.get('http://localhost:3001/users')).data;
+    } catch (error) {
+        console.error(error)
+    }
+}
 
-     if (regEmail === "") {
-         alert('Kérem írja be az e-mail címét!')
-         return false;
-     } else if (regName === "") {
-         alert('Kérem írja be felhasználó nevét!')
-         return false;
-     } else if (regPassword === "") {
-         alert('Kérem írja be jelszavát!')
-         return false;
-     } else if (regPassword2 === "") {
-         alert('Kérem ismételje meg jelszavát')
-         return false
-     } else if (regPassword !== regPassword2) {
-         alert('A két jelszó nem egyezik!')
-         return false
-     } else alert('Minden ki van töltve!')
-     return false;
- };
+const countUsers = async () => {
+    const users = await getUsers();
+    const userCount = users.length;
+    document.querySelector(".counter-h1").innerHTML = `Felhasználók: ${userCount}`;
+};
 
+countUsers()
 
- function regEmailCheck() {
-     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-     const regEmail = document.forms["reg_form"]["reg_email"].value;
-     const emailMatch = regExEmail.test(regEmail);
-     if (emailMatch === false) {
-         alert('Az e-mail cím nem megfelelő!')
-         return false
-     } else if (emailMatch === true) {
-         return true
-     } else alert('Valami nem jó!')
-     return false;
- };
+const loginForm = document.forms["login_form"];
+const regForm = document.forms["reg_form"];
+const loginBtn = document.getElementById('login-btn');
 
- function regPassCheck() {
-     const regExPass = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/;
-     const regPass = document.forms["reg_form"]["reg_password"].value;
-     const passMatch = regExPass.test(regPass);
-     if (passMatch === false) {
-         alert('A jelszó nem elég erős! Kérem használjon legalább 1 nagy betűt és 1 számot!')
-         return false
-     } else if (passMatch === true) {
-         return true;
-     } else alert('Valami nem jó!')
-     return false;
- };
+let userData = {
+    name: '',
+    email: '',
+    password: ''
+};
 
- function regNameCheck() {
-     const regExName = /^.{8,}$/;
-     const regName = document.forms["reg_form"]["reg_name"].value;
-     const nameMatch = regExName.test(regName);
-     if (nameMatch === false) {
-         alert('A felhasználónév nem elég hosszú! Kérem használjon minimum 8 karaktert!')
-         return false
-     } else if (nameMatch === true) {
-         return true;
-     } else alert('Valami nem jó!')
-     return false;
- };
+function checkUserRegistration() {
+    const regEmail = document.forms["reg_form"]["reg_email"].value;
+    const regName = document.forms["reg_form"]["reg_name"].value;
+    const regPassword = document.forms["reg_form"]["reg_password"].value;
+    const regPassword2 = document.forms["reg_form"]["reg_password2"].value;
+    userData.email = document.forms["reg_form"]["reg_email"].value;
+    userData.name = document.forms["reg_form"]["reg_name"].value;
+    userData.password = document.forms["reg_form"]["reg_password"].value;
 
- $(document).ready(function () {
-     $('.reg-form__reg-name-label').mouseenter(function () {
-         $('.reg-form__reg-name-span').show();
-     });
-     $('.reg-form__reg-name-label').mouseleave(function () {
-         $('.reg-form__reg-name-span').hide();
-     });
-     $('.reg-form__reg-pass-label').mouseenter(function () {
-         $('.reg-form__reg-pass-span').show();
-     });
-     $('.reg-form__reg-pass-label').mouseleave(function () {
-         $('.reg-form__reg-pass-span').hide();
-     });
-     $('.reg-form__reg-pass2-label').mouseenter(function () {
-         $('.reg-form__reg-pass2-span').show();
-     });
-     $('.reg-form__reg-pass2-label').mouseleave(function () {
-         $('.reg-form__reg-pass2-span').hide();
-     });
- })
+    if (regEmail === "") {
+        $('.reg-form__reg-email-span2').toggle();
+        return false;
+    } else if (regName === "") {
+        $('.reg-form__reg-email-span2').toggle();
+        $('.reg-form__reg-name-span2').toggle();
+        return false;
+    } else if (regPassword === "") {
+        $('.reg-form__reg-name-span2').toggle();
+        $('.reg-form__reg-pass-span2').toggle();
+        return false;
+    } else if (regPassword2 === "") {
+        $('.reg-form__reg-pass-span2').toggle();
+        $('.reg-form__reg-pass2-span').toggle();
+        return false;
+    } else if (regPassword !== regPassword2) {
+        $('.reg-form__reg-pass2-span').toggle();
+        $('.reg-form__reg-pass2-span2').toggle();
+        return false;
+    } else $('.reg-form__reg-success-span').toggle();
+    let postUser = new XMLHttpRequest();
+    postUser.open("POST", 'http://localhost:3001/users', true);
+    postUser.setRequestHeader('Content-Type', 'application/json');
+    postUser.send(JSON.stringify(userData));
+    return true;
+};
+
+function regEmailCheck() {
+    const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const regEmail = document.forms["reg_form"]["reg_email"].value;
+    const emailMatch = regExEmail.test(regEmail);
+    if (emailMatch === false) {
+        $('.reg-form__reg-email-span').show();
+        return false;
+    } else if (emailMatch === true) {
+        $('.reg-form__reg-email-span').hide()
+        return true
+    } else alert('Hiba történt!')
+    return false;
+};
+
+function regPassCheck() {
+    const regExPass = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/;
+    const regPass = document.forms["reg_form"]["reg_password"].value;
+    const passMatch = regExPass.test(regPass);
+    if (passMatch === false) {
+        $('.reg-form__reg-pass-span').show();
+        return false
+    } else if (passMatch === true) {
+        $('.reg-form__reg-pass-span').hide();
+        return true;
+    } else alert('Hiba történt!')
+    return false;
+};
+
+function regNameCheck() {
+    const regExName = /^.{5,}$/;
+    const regName = document.forms["reg_form"]["reg_name"].value;
+    const nameMatch = regExName.test(regName);
+    if (nameMatch === false) {
+        $('.reg-form__reg-name-span').show();
+        return false
+    } else if (nameMatch === true) {
+        $('.reg-form__reg-name-span').hide()
+        return true;
+    } else alert('Hiba történt!')
+    return false;
+};

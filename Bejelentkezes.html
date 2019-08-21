@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Grenze&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Oswald:500&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -30,22 +31,25 @@
             </div>
         </div>
     </nav>
-    <main id="main_container" class="container">
+    <main id="main_container" class="main-content container">
         <div class="login">
-            <form name="login_form" class="login-form" onsubmit="return checkUserLogin()">
+            <form name="login_form" class="login-form">
                 <div class="row">
                     <label for="loginName">Felhasználó név</label>
                     <input type="text" name="loginName" class="login-form__login-name form-control input-lg col-md-4"
-                        placeholder="Adja meg felhasználó nevét / e-mail címét" /></div>
+                        placeholder="Adja meg felhasználó nevét" /></div>
+                        <span class="login-form__login-name-span login-form__login-span alert-danger">Kérem adja meg Felhasználónevét!</span><br>
+                            <span class="login-form__login-name-span2 login-form__login-span alert-danger">Nincs ilyen felhasználónév!</span>
                 <div class="row">
                     <label for="loginPassword">Jelszó</label>
                     <input type="password" name="loginPassword" class="login-form__login-password form-control input-lg col-md-4"
                         placeholder="Adja meg jelszavát" />
                 </div>
+                <span class="login-form__login-pass-span login-form__login-span alert-danger">Kérem adja meg Jelszavát!</span><br>
+                            <span class="login-form__login-pass-span2 login-form__login-span alert-danger">Jelszava nem megfelelő!</span>
                 <div class="row">
-                    <button type="submit" class="btn btn-primary login_btn col-md-4">
-                        Belépés
-                    </button>
+                    <input type="button" class="btn btn-primary login_btn col-md-4" id="login-btn" value="Belépés" onclick="checkUserLogin()"/>
+                    <span class="login-form__login-success-span login-form__login-span alert-success">Sikeres bejelentkezés!</span>
             </form>
         </div>
         </form>
@@ -60,6 +64,11 @@
         </div>-->
 
     </main>
+    <div class="counter-container container">
+            <div class="index-page__user-counter row">
+                <h1 class=" counter-h1 col-md-12"></h1>
+            </div>
+        </div>
     <footer class="footer container">
         <div class="row">
             <div class="footer__copyright col-md-4">
