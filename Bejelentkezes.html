@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Grenze&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Oswald:500&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -30,36 +31,76 @@
             </div>
         </div>
     </nav>
-    <main id="main_container" class="container">
+    <main id="main_container" class="main-login-container main-content container">
         <div class="login">
-            <form name="login_form" class="login-form" onsubmit="return checkUserLogin()">
+            <form name="login_form" class="login-form">
                 <div class="row">
                     <label for="loginName">Felhasználó név</label>
                     <input type="text" name="loginName" class="login-form__login-name form-control input-lg col-md-4"
-                        placeholder="Adja meg felhasználó nevét / e-mail címét" /></div>
+                        placeholder="Adja meg felhasználó nevét" /></div>
+                <span class="login-form__login-name-span login-form__login-span alert-danger">Kérem adja meg
+                    Felhasználónevét!</span><br>
+                <span class="login-form__login-name-span2 login-form__login-span alert-danger">Helytelen felhasználónév,
+                    vagy jelszó!!</span>
                 <div class="row">
                     <label for="loginPassword">Jelszó</label>
-                    <input type="password" name="loginPassword" class="login-form__login-password form-control input-lg col-md-4"
+                    <input type="password" name="loginPassword"
+                        class="login-form__login-password form-control input-lg col-md-4"
                         placeholder="Adja meg jelszavát" />
                 </div>
+                <span class="login-form__login-pass-span login-form__login-span alert-danger">Kérem adja meg
+                    Jelszavát!</span><br>
+                <span class="login-form__login-pass-span2 login-form__login-span alert-danger">Jelszava nem
+                    megfelelő!</span>
                 <div class="row">
-                    <button type="submit" class="btn btn-primary login_btn col-md-4">
-                        Belépés
-                    </button>
+                    <input type="button" class="btn btn-primary login_btn col-md-4" id="login-btn" value="Belépés"
+                        onclick="checkUserLogin();" />
+                    <span class="login-form__login-success-span login-form__login-span alert-success">Sikeres
+                        bejelentkezés!</span>
             </form>
         </div>
         </form>
 
-        <!--Később kerül be-->
-
-        <!--<div class="row">
-            <a class="col-md-4" href="#"><span>Elfelejtett Jelszó</span></a>
-        </div>
-        <div class="row">
-            <a class="col-md-4" href="#"><span>Elfelejtett Felhasználónév</span></a>
-        </div>-->
-
     </main>
+
+    <main id="main-account-container" class="main-account-container main-content container">
+        <div class="account-page">
+            <div class="account_navbar row">
+                <h1 class="col-md-12">Saját adatok</h1>
+            </div>
+            <hr>
+            <div class="account-page__links row">
+                <div class="account-page__link1 col-md-3"><a href="#">Adatok módosítása</a></div>
+                <div class="account-page__link2 col-md-3"><a href="#">Barátok / Ismerősök</a></div>
+                <div class="account-page__link3 col-md-3"><a href="#">Tiltólista</a></div>
+                <div class="account-page__link4 col-md-3"><a href="#">Fórum</a></div>
+            </div>
+            <hr>
+            <div class="account-page__personal-data row">
+                <div class="account-page__info-block col-md-6">
+                    <div class="acc accname">Felhasználónév: <span class="acc-span accname-span"></span></div>
+
+                    <div class="acc accemail">E-mail cím: <span class="acc-span accemail-span"></span></div>
+
+                    <div class="acc accpass">Jelszó: <span class="acc-span accpass-span"></span></div>
+
+                </div>
+                <div class="account-page__picture col-md-6">
+
+                <div class="acc accpic">Fénykép: <span class="acc-span accpic-span"></span></div>
+                <img src="placeholder.png" alt="placeholder" class="acc-image" height="200" width="200">
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </main>
+
+    <div class="counter-container container">
+        <div class="index-page__user-counter row">
+            <h1 class=" counter-h1 col-md-12"></h1>
+        </div>
+    </div>
     <footer class="footer container">
         <div class="row">
             <div class="footer__copyright col-md-4">
