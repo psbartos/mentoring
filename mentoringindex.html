@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Grenze&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -20,6 +21,7 @@
             <div class="col-md-7 navbar__page-title">MENTORING DEMO OLDAL</MENTORING>
             </div>
             <div class="navbar__dropdown-button dropdown col-md-3">
+                <button type="button" class="btn btn-primary google-signin" onclick="signIn()">Google Sign-in</button>
                 <button type="button" id="dropdownMenuButton" class="btn btn-primary dropdown-toggle"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bejelentkezés /
                     Regisztráció</button>
@@ -32,8 +34,17 @@
     </nav>
     <main id="main-container" class="main-content container">
         <img src="logo.png" class="img-fluid img-responsive main-content__epam_logo" alt="Epam logo">
+        <hr>
+        <video id="main-video" class="video-fluid" width="100%" muted loop autoplay>
+            <source src="EPAMHUNGARY.mp4" type="video/mp4">
+        </video>
 
     </main>
+    <div class="counter-container container">
+        <div class="index-page__user-counter row">
+            <h1 class=" counter-h1 col-md-12"></h1>
+        </div>
+    </div>
     <footer class="footer container">
         <div class="row">
             <div class="footer__copyright col-md-4">
@@ -42,7 +53,32 @@
         </div>
 
     </footer>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
+    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBMxz9uIfUIvYP1Z69vtlI-POBI-qoKNZk",
+            authDomain: "mentoringps.firebaseapp.com",
+            databaseURL: "https://mentoringps.firebaseio.com",
+            projectId: "mentoringps",
+            storageBucket: "mentoringps.appspot.com",
+            messagingSenderId: "861078757872",
+            appId: "1:861078757872:web:74027b3aadfbb85a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
