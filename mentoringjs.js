@@ -151,7 +151,7 @@ function checkUserRegistration() {
     });
 }*/
 
-function uploadPicture(){
+/*function uploadPicture(){
     let storageRef = firebase.storage().ref('/profileImages');
     let selectedFile = event.target.files[0];
     let fileName = selectedFile.name
@@ -165,7 +165,7 @@ function uploadPicture(){
         let downloadURL = uploadTask.snapshot.downloadURL;
         console.log(downloadURL);
     });
-}
+}*/
 
 
 
