@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Grenze&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Oswald:500&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -31,48 +32,74 @@
     </nav>
     <main id="main_container" class="main-content container">
         <div class="registration-container">
-            <form name="reg_form" class="reg-form" onsubmit="return checkUserRegistration()">
-                <div class=row>
-                    <label for="reg_email">E-mail cím</label>
-                    <input type="email" name="reg_email" onfocusout="regEmailCheck()"
-                        class="reg-form__reg-email form-control input-lg col-md-4" placeholder="Adja meg e-mail címét" />
-                </div>
-                <div class=row>
-                    <label class="reg-form__reg-name-label" for="reg_name">Felhasználó név</label>
-                    <input type="text" name="reg_name" onfocusout="regNameCheck()"
-                        class="reg_name form-control input-lg col-md-4" placeholder="Adja meg felhasználó nevét" />
-                </div>
-                <span class="reg-form__reg-name-span reg-form__reg-span">Felhasználó neve tartalmazzon legalább 8 karakter!</span>
-                <div class=row>
-                    <label class="reg-form__reg-pass-label" for="reg_password">Jelszó</label>
-                    <input type="password" name="reg_password" onfocusout="regPassCheck()"
-                        class="reg-form__reg-password form-control input-lg col-md-4" placeholder="Adja meg jelszavát" />
-                </div>
-                <span class="reg-form__reg-pass-span reg-form__reg-span">Jelszava tartalmazzon legalább egy nagybetűt és egy számot!</span>
-                <div class=row>
-                    <label class="reg-from__reg-pass2-label" for="reg_password2">Erősítse meg jelszavát</label>
-                    <input type="password" name="reg_password2" class="reg_password2 form-control input-lg col-md-4"
-                        placeholder="Adja meg újra jelszavát" />
-                </div>
-                <span class="reg-form__reg-pass2-span reg-form__reg-span">Írja be újra jelszavát!</span>
-                <div class=row>
-                    <label for="form-control-file">Töltse fel fényképét (Nem kötelező!)</label>
-                    <input type="file" class="reg-form__form-control-file" id="exampleFormControlFile1" />
-                </div>
-                <div class=row>
-                    <button type="submit" class="btn btn-primary reg-form__reg2_btn col-md-4">
-                        Regisztráció
-                    </button>
-                </div>
-                <div class=row>
-                    <input type="checkbox" class="form-check-input" id="adatvedelem_checkbox" />
-                    <label class="reg-form__form-check-label" for="adatvedelem_checkbox">Fogadja el adatvédelmi
-                        szabályzatunkat!</label>
-                </div>
-            </form>
-
+            <div class="registration">
+                <form name="reg_form" class="reg-form" onsubmit="checkUserRegistration(); return false;" method="POST">
+                    <div class=row>
+                        <label for="reg_email">E-mail cím</label>
+                        <input type="email" name="reg_email" onfocusout="regEmailCheck()"
+                            class="reg-form__reg-email form-control input-lg col-md-4"
+                            placeholder="Adja meg e-mail címét" />
+                    </div>
+                    <span class="reg-form__reg-email-span reg-form__reg-span alert-danger">Kérem adja meg helyesen
+                        e-mail címét!</span><br>
+                    <span class="reg-form__reg-email-span2 reg-form__reg-span alert-danger">Kérem írja be e-mail
+                        címét!</span>
+                    <div class=row>
+                        <label class="reg-form__reg-name-label" for="reg_name">Felhasználó név</label>
+                        <input type="text" name="reg_name" onfocusout="regNameCheck()"
+                            class="reg_name form-control input-lg col-md-4" placeholder="Adja meg felhasználó nevét" />
+                    </div>
+                    <span class="reg-form__reg-name-span reg-form__reg-span alert-danger">Felhasználó neve tartalmazzon
+                        legalább 5
+                        karakter!</span><br>
+                    <span class="reg-form__reg-name-span2 reg-form__reg-span alert-danger">Kérem írja be
+                        felhasználónevét!</span>
+                    <div class=row>
+                        <label class="reg-form__reg-pass-label" for="reg_password">Jelszó</label>
+                        <input type="password" name="reg_password" onfocusout="regPassCheck()"
+                            class="reg-form__reg-password form-control input-lg col-md-4"
+                            placeholder="Adja meg jelszavát" />
+                    </div>
+                    <span class="reg-form__reg-pass-span reg-form__reg-span alert-danger">Jelszava tartalmazzon legalább
+                        egy
+                        nagybetűt és egy számot!</span><br>
+                    <span class="reg-form__reg-pass-span2 reg-form__reg-span alert-danger">Kérem írja be
+                        jelszavát!</span>
+                    <div class=row>
+                        <label class="reg-from__reg-pass2-label" for="reg_password2">Erősítse meg jelszavát</label>
+                        <input type="password" name="reg_password2" class="reg_password2 form-control input-lg col-md-4"
+                            placeholder="Adja meg újra jelszavát" />
+                    </div>
+                    <span class="reg-form__reg-pass2-span reg-form__reg-span alert-danger">Írja be újra
+                        jelszavát!</span><br>
+                    <span class="reg-form__reg-pass2-span2 reg-form__reg-span alert-danger">A két jelszó nem
+                        egyezik!</span>
+                    <div class=row>
+                        <label for="form-control-file">Töltse fel fényképét!</label>
+                        <input type="file" class="reg-form__form-control-file" onchange="uploadPicture(this)"
+                            id="exampleFormControlFile1" />
+                    </div>
+                    <div class=row>
+                        <button type="submit" class="btn btn-primary reg-form__reg2_btn col-md-4">
+                            Regisztráció
+                        </button>
+                        <span class="reg-form__reg-success-span reg-form__reg-span alert-success">Sikeres
+                            Regisztráció!</span>
+                    </div>
+                    <!--<div class=row>
+                        <input type="checkbox" class="form-check-input" id="adatvedelem_checkbox" />
+                        <label class="reg-form__form-check-label" for="adatvedelem_checkbox">Fogadja el adatvédelmi
+                            szabályzatunkat!</label>
+                    </div> -->
+                </form>
+            </div>
         </div>
     </main>
+    <div class="counter-container container">
+        <div class="index-page__user-counter row">
+            <h1 class=" counter-h1 col-md-12"></h1>
+        </div>
+    </div>
     <footer class="footer container">
         <div class="row">
             <div class="footer__copyright col-md-4">
@@ -81,10 +108,21 @@
         </div>
 
     </footer>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
+    <body>
+            <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+          
+            <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+            <script src="/__/firebase/6.4.1/firebase-app.js"></script>
+          
+            <!-- Add Firebase products that you want to use -->
+            <script src="/__/firebase/6.4.1/firebase-auth.js"></script>
+            <script src="/__/firebase/6.4.1/firebase-firestore.js"></script>
+          </body>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>

@@ -2,51 +2,35 @@ async function checkUserLogin() {
     const loginName = document.forms["login_form"]["loginName"].value;
     const loginPassword = document.forms["login_form"]["loginPassword"].value;
 
+    console.log(getUserNames());
+
     if (loginName === "") {
-        $('.login-form__login-name-span').show();
+        $('.login-form__login-name-span').toggle();
         return false;
     } else if (loginPassword === "") {
-        $('.login-form__login-name-span').hide();
-        $('.login-form__login-pass-span').show();
+        $('.login-form__login-name-span').toggle();
+        $('.login-form__login-pass-span').toggle();
         return false;
-    } else
-        return await loginCheck();
+    } else if (!(await getUserNames)) {
+        $('.login-form__login-pass-span').toggle();
+        $('.login-form__login-name-span2').toggle();
+        return false;
+    } else if (await getUserNames) {
+        $('.login-form__login-success-span').toggle();
+        setTimeout(function () {
+            location.href = "http://127.0.0.1:5500/accountpage.html"
+        }, 1500);
+        return true;
+    } else console.log('Hiba történt a bejelentkezésnél!');
+    return false;
+
 };
-
-async function loginCheck() {
-    await userLoginCheck().then(function (result) {
-        if (result === true) {
-            $('.login-form__login-success-span').show();
-            $('.login-form__login-name-span').hide();
-            $('.login-form__login-pass-span').hide();
-            accountPage();
-        } else {
-            $('.login-form__login-pass-span').toggle();
-            $('.login-form__login-name-span2').toggle();
-            return false
-        }
-    })
-};
-
-async function accountPage() {
-    const users = await getUsers();
-
-    setTimeout(function () {
-        $('.main-login-container').toggle();
-        $('.main-account-container').toggle();
-    }, 1500);
-
-    document.querySelector('.accname-span').innerHTML = `${users[userID].name}`
-    document.querySelector('.accemail-span').innerHTML = `${users[userID].email}`
-    document.querySelector('.accpass-span').innerHTML = `${users[userID].password}`
-
-}
 
 const getUsers = async () => {
     try {
         return (await axios.get('http://localhost:3001/users')).data;
     } catch (error) {
-        alert(`A szerver nem elérhető! Kérem ellenőrizze, fut e a JSON szerver!`)
+        alert(`${error} A szerver nem elérhető!`)
     }
 }
 
@@ -56,24 +40,17 @@ const countUsers = async () => {
     $('.counter-container').toggle();
     document.querySelector(".counter-h1").innerHTML = `Felhasználók: ${userCount}`;
 };
-$(document).ready( countUsers ());
 
-const userID = [];
-
-async function userLoginCheck() {
+async function getUserNames() {
     const loginName = document.forms["login_form"]["loginName"].value;
     const loginPassword = document.forms["login_form"]["loginPassword"].value;
     const users = await getUsers()
-    const filteredUsers = users.filter(element => element.name === loginName && element.password === loginPassword && userID.push(element.id));
-
+    const filteredUsers = users.filter(element => element.name === loginName && element.password === loginPassword);
+    console.log(filteredUsers.length > 0);
     return filteredUsers.length > 0;
 }
 
-async function getID() {
-    const users = await getUsers();
-    const userID = users[0].id
-    console.log(userID);
-}
+countUsers()
 
 const loginForm = document.forms["login_form"];
 const regForm = document.forms["reg_form"];
@@ -120,62 +97,6 @@ function checkUserRegistration() {
     postUser.send(JSON.stringify(userData));
     return true;
 };
-
-/* function uploadPicture(element) {
-
-    let file = element.files[0];
-
-    let newName = "file-" + Date.now() + "--originally-" + file.name;
-    let fileURL = "files/" + newName;
-
-    let form_data = new FormData();
-    form_data.append("fileToUpload", file);
-    form_data.append("newName", newName);
-
-    $.ajax({
-        url: "https://cors-anywhere.herokuapp.com/gs://mentoringps.appspot.com",
-        type: 'POST',
-        contentType: false,
-        data: form_data,
-        cache: false,
-        processData: false,
-        dataType: 'data',
-        emulateJSON: true,
-        success: function (response) {
-
-            let pictureFile = new XMLHttpRequest();
-            pictureFile.open('POST', 'https://cors-anywhere.herokuapp.com/gs://mentoringps.appspot.com' + uploadId, false);
-            pictureFile.setRequestHeader("Content-type", "application/json");
-            pictureFile.send('{"fileURL": "' + fileURL + '"}');
-        }
-    });
-}*/
-
-function uploadPicture(){
-    let storageRef = firebase.storage().ref('/profileImages');
-    let selectedFile = event.target.files[0];
-    let fileName = selectedFile.name
-    let fileRef = storage().child(fileName);
-    let uploadTask = storageRef.put(selectedFile);
-    uploadTask.on('state_changed', function(snapshot){
-
-    }, function(error){
-        
-    }, function(){
-        let downloadURL = uploadTask.snapshot.downloadURL;
-        console.log(downloadURL);
-    });
-}
-
-
-
-(function canvasManipulate(){
-let accCanvas = document.getElementById('accpic__placeholder');
-let accCanvasCtx = accCanvas.getContext("2d");
-accCanvasCtx.moveTo(0, 0);
-accCanvasCtx.lineTo(300,150);
-accCanvasCtx.stroke();
-}) ();
 
 function regEmailCheck() {
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
