@@ -1,22 +1,13 @@
-//Csatlakozás a JSON szerverhez!
-const getUsers = async () => {
-    try {
-        return (await axios.get('http://localhost:3001/users')).data;
-    } catch (error) {
-        alert(`A szerver nem elérhető! Kérem ellenőrizze, fut e a JSON szerver!`)
-    }
-}
-
 //Bejelentkezés a Google Fiókba FIREBASE-el!
 const provider = new firebase.auth.GoogleAuthProvider();
 
-function signIn(){
-    firebase.auth().signInWithPopup(provider).then(function(result){
+function signIn() {
+    firebase.auth().signInWithPopup(provider).then(function (result) {
 
         let token = result.credential.accessToken;
         let user = result.user;
         console.log(user);
-    }).catch(function(error){
+    }).catch(function (error) {
         let errorCode = error.code;
         let errorMessage = error.message;
         let email = error.email;
@@ -25,12 +16,11 @@ function signIn(){
 }
 
 //Autentikáció a Google bejelentkezéshez!
-$(document).ready(function(){
-    firebase.auth().onAuthStateChanged(function(user){
-        if(user){
+$(document).ready(function () {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
             let token = firebase.auth().currentUser.uid;
-            queryDatabase(token);
-        }else {
+        } else {
             alert('Hiba Google autentikáció közben! - Ellenőrizze, honnan fut a weboldal!');
             console.log('Hiba Google autentikáció közben! - Ellenőrizze, honnan fut a weboldal!');
         }
@@ -53,7 +43,7 @@ async function checkUserLogin() {
         return await loginCheck();
 };
 
-//Felhasználó validálás a JSON adatbázisból Bejelentkezésnél!
+//Felhasználó validálás a FIREBASE adatbázisból Bejelentkezésnél!
 async function loginCheck() {
     await userLoginCheck().then(function (result) {
         if (result === true) {
@@ -69,7 +59,7 @@ async function loginCheck() {
     })
 };
 
-//Felhasználó név - jelszó vizsgálat a JSON adatbázisban filterrel!
+//Felhasználó név - jelszó vizsgálat a FIREBASE adatbázisban!
 async function userLoginCheck() {
     const loginName = document.forms["login_form"]["loginName"].value;
     const loginPassword = document.forms["login_form"]["loginPassword"].value;
@@ -81,9 +71,7 @@ async function userLoginCheck() {
             userID = userKey;
             return true;
         }
-        
     }
-
     return false;
 }
 
@@ -107,39 +95,32 @@ async function accountPage() {
     document.querySelector('.accname-span').innerHTML = `${users[userID].user}`
     document.querySelector('.accemail-span').innerHTML = `${users[userID].email}`
     document.querySelector('.accpass-span').innerHTML = `${users[userID].password}`
+    if (`${users[userID].url}` === ""){
+    $('.accpic__placeholder').show();
+    } else $('.accpic__placeholder').hide();
+    document.querySelector('.profile-picture-img').src = `${users[userID].url}`
 }
 
 //Megszámolja a JSON db-ben tárolt felhasználók számát, megjeleníti a page-en!
 const countUsers = async () => {
-    const users = await getUsers();
+    const users = await getUsersFromFirebase();
     const userCount = users.length;
     $('.counter-container').toggle();
     document.querySelector(".counter-h1").innerHTML = `Felhasználók: ${userCount}`;
 };
-$(document).ready( countUsers ());
+$(document).ready(countUsers());
 
 const loginForm = document.forms["login_form"];
 const regForm = document.forms["reg_form"];
 const loginBtn = document.getElementById('login-btn');
 
-//Template a JSON objektumhoz!
-let userData = {
-    name: '',
-    email: '',
-    password: '',
-    picture: ''
-};
-
 //Regisztrációs mezők ellenőrzése - regisztrációs adatok feltöltése a userData-ba, POST-olás a JSON-be!
-function checkUserRegistration() {
+async function checkUserRegistration() {
     const regEmail = document.forms["reg_form"]["reg_email"].value;
     const regName = document.forms["reg_form"]["reg_name"].value;
     const regPassword = document.forms["reg_form"]["reg_password"].value;
     const regPassword2 = document.forms["reg_form"]["reg_password2"].value;
-    userData.email = document.forms["reg_form"]["reg_email"].value;
-    userData.name = document.forms["reg_form"]["reg_name"].value;
-    userData.password = document.forms["reg_form"]["reg_password"].value;
-    
+
     if (regEmail === "") {
         $('.reg-form__reg-email-span2').toggle();
         return false;
@@ -160,20 +141,16 @@ function checkUserRegistration() {
         $('.reg-form__reg-pass2-span2').toggle();
         return false;
     } else $('.reg-form__reg-success-span').toggle();
-    let postUser = new XMLHttpRequest();
-    postUser.open("POST", 'http://localhost:3001/users', true);
-    postUser.setRequestHeader('Content-Type', 'application/json');
-    postUser.send(JSON.stringify(userData));
-    return true;
+    await uploadRegistration()
 };
 
 //FIREBASE képfeltöltés és user adatok feltöltése FIREBASE database-be!
-$('.reg-form__form-control-file').on("change", function(event){
+ $('.reg-form__form-control-file').on("change", function(event){
     let selectedFile = event.target.files[0]
-    uploadPicture();
+    uploadRegistration();
 })
 
-function uploadPicture(){
+function uploadRegistration() {
     const regEmail = document.forms["reg_form"]["reg_email"].value;
     const regName = document.forms["reg_form"]["reg_name"].value;
     const regPassword = document.forms["reg_form"]["reg_password"].value;
@@ -181,11 +158,11 @@ function uploadPicture(){
     let filename = selectedFile.name
     let storageRef = firebase.storage().ref('/profileImages/' + filename);
     let uploadTask = storageRef.put(selectedFile);
-    uploadTask.on('state_changed', function(snapshot){
+    uploadTask.on('state_changed', function (snapshot) {
 
-    }, function(error){
-        
-    }, function generateURL(){
+    }, function (error) {
+
+    }, function generateURL() {
         let postKey = firebase.database().ref('Users/').push().key;
         let downloadURL = uploadTask.snapshot.downloadURL;
         let updates = {};
@@ -195,7 +172,7 @@ function uploadPicture(){
             email: regEmail,
             password: regPassword,
         }
-        updates['/Users/'+ postKey] = postData;
+        updates['/Users/' + postKey] = postData;
         firebase.database().ref().update(updates)
         console.log(downloadURL);
     });
