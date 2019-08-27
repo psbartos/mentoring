@@ -1,9 +1,125 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
-  ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
-  ],
-  "profile": { "name": "typicode" }
+  "users": [
+    {
+      "id": 0,
+      "name": "test",
+      "email": "email@email.com",
+      "password": "password"
+    },
+    {
+      "name": "test2",
+      "email": "test@test.com",
+      "password": "test2",
+      "id": 1
+    },
+    {
+      "name": "psbartospeti88",
+      "email": "psbartos@gmail.com",
+      "password": "psbartos88",
+      "id": 2
+    },
+    {
+      "name": "test3",
+      "email": "test2@test2.com",
+      "password": "test3",
+      "id": 3
+    },
+    {
+      "name": "test4",
+      "email": "test@test.com",
+      "password": "test4",
+      "id": 4
+    },
+    {
+      "name": "test5",
+      "email": "valami@valami.com",
+      "password": "test5",
+      "id": 5
+    },
+    {
+      "name": "safadsg5432 z3grg",
+      "email": "valami@valami.com",
+      "password": "adsasd123",
+      "id": 6
+    },
+    {
+      "name": "valamivalami",
+      "email": "test5@test5.com",
+      "password": "valamivalami123",
+      "id": 7
+    },
+    {
+      "name": "valakivalaki",
+      "email": "test@test.com",
+      "password": "valakivalaki",
+      "id": 8
+    },
+    {
+      "name": "peti",
+      "email": "test@test.com",
+      "password": "peti",
+      "id": 9
+    },
+    {
+      "name": "péter",
+      "email": "test@test.com",
+      "password": "valaki123",
+      "id": 10
+    },
+    {
+      "name": "somebody",
+      "email": "test@test.com",
+      "password": "somebody123",
+      "id": 11
+    },
+    {
+      "name": "somebodyelse",
+      "email": "test@test.com",
+      "password": "123",
+      "id": 12
+    },
+    {
+      "name": "test66",
+      "email": "test@test.com",
+      "password": "test66",
+      "id": 13
+    },
+    {
+      "name": "test88",
+      "email": "valami@valami.com",
+      "password": "test88",
+      "id": 14
+    },
+    {
+      "name": "last",
+      "email": "last@last.com",
+      "password": "last",
+      "id": 15
+    },
+    {
+      "name": "mrvalaki",
+      "email": "valami@valami.com",
+      "password": "valaki88",
+      "id": 16
+    },
+    {
+      "name": "example",
+      "email": "example@example.com",
+      "password": "example123",
+      "id": 17
+    },
+    {
+      "name": "last2",
+      "email": "last2@last2.com",
+      "password": "last222",
+      "id": 18
+    },
+    {
+      "name": "gandalf",
+      "email": "gandalf@gandalf.com",
+      "password": "gandalf1",
+      "picture": "",
+      "id": 19
+    }
+  ]
 }
