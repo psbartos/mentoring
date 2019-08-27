@@ -41,6 +41,15 @@
     margin-top: 1em;
 }
 
+.counter-container {
+    background-color: whitesmoke;
+    box-shadow: @base-box-shadow;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    max-width: 40%;
+    display: none;
+}
+
 .navbar__page-title {
     @media screen and (min-width: 680px) {
         font-size: 2.5em;
@@ -112,10 +121,48 @@
 .login {
     padding-left: 3em;
     padding-bottom: 2em;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    margin: 2em auto 2em auto;
+    display: inline-block;
+}
+
+.registration {
+    .login();
+}
+
+.account-page__personal-data {
+   .login();
+    width: 100%;
+    padding-bottom: 1em;
+}
+
+.account-page__links {
+    .oswald_grey();
+    text-decoration: none;
+    text-align: center;
+}
+
+.registration input {
+    max-width: 90%;
+}
+
+.login input {
+    max-width: 90%;
 }
 
 .login_btn {
     margin-top: 2em;
+}
+
+.google-signin {
+    margin-top: 0.7em;
+}
+
+.reg-form__form-check-label {
+    @media screen and (max-width: 680px){
+        font-size: 1em;
+    }
 }
 
 .registration-container {
@@ -150,15 +197,40 @@
     .oswald_grey();
 }
 
+.index-page__user-counter h1 {
+    font-size: 2.5em;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 0.2em;
+    .oswald_grey();
+@media screen and (max-width: 640px){
+    font-size: 1.5em;
+}
+}
+
+.accpic__placeholder {
+    width: 100%;
+    height: auto;
+    border: 1px solid black;
+}
+
 .acc {
     .grenze_blue();
     font-size: 1.7em;
     font-weight: 400;
-    padding-top: 1em;
+    padding-top: 2em;
 }
 
 .accpic {
-    padding-bottom: 2em;
+    padding-bottom: 1em;
+}
+
+.accpass {
+    .accpic();
+}
+
+.accname {
+    padding-top: 2em;
 }
 
 .footer {
@@ -177,4 +249,16 @@
 .reg-form__reg-span {
     display: none;
     .oswald_font_scheme();
+}
+
+.login-form__login-span {
+    .reg-form__reg-span();
+}
+
+.main-account-container {
+    display: none;
+}
+
+.acc-span {
+    .oswald_grey();
 }
