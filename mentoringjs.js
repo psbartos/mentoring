@@ -6,7 +6,6 @@ function signIn() {
 
         let token = result.credential.accessToken;
         let user = result.user;
-        console.log(user);
     }).catch(function (error) {
         let errorCode = error.code;
         let errorMessage = error.message;
@@ -80,7 +79,7 @@ async function getUsersFromFirebase(token) {
     return (await firebase.database().ref('/Users/').once('value')).val();
 };
 
-//A filter által talált létező felhasználó Obj ID-jének push-olása a userID-be!
+//A loginCheck által talált létező felhasználó Obj ID-jének push-olása a userID-be!
 let userID = '';
 
 //A talált Obj tartalmát feltölti az account oldalon a bejelentkező adataival!
@@ -104,7 +103,7 @@ async function accountPage() {
 //Megszámolja a JSON db-ben tárolt felhasználók számát, megjeleníti a page-en!
 const countUsers = async () => {
     const users = await getUsersFromFirebase();
-    const userCount = users.length;
+    const userCount = Object.keys(users).length;
     $('.counter-container').toggle();
     document.querySelector(".counter-h1").innerHTML = `Felhasználók: ${userCount}`;
 };
@@ -141,7 +140,6 @@ async function checkUserRegistration() {
         $('.reg-form__reg-pass2-span2').toggle();
         return false;
     } else $('.reg-form__reg-success-span').toggle();
-    await uploadRegistration()
 };
 
 //FIREBASE képfeltöltés és user adatok feltöltése FIREBASE database-be!
